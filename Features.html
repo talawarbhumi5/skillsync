@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Features — SkillPulse</title>
+<meta name="description" content="Real-time skill tracking, AI insights, 3D dashboards, and workforce optimization.">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#04060a;
+  --accent1:#7c5cff;
+  --accent2:#00d4ff;
+  --muted:#9aa4c0;
+  --light:#e6eef8;
+}
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+html, body{
+  height:100%;
+  background: radial-gradient(800px 400px at 10% 10%, rgba(124,92,255,0.06), transparent),
+              radial-gradient(700px 300px at 90% 90%, rgba(0,212,255,0.03), transparent),
+              var(--bg);
+  color:#e6eef8;
+  font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+  scroll-behavior:smooth;
+}
+
+/* NAVBAR */
+header.topbar{
+  position:fixed;
+  top:0; left:0; right:0;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:16px 48px;
+  background:rgba(4,6,10,0.85);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  z-index:100;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  text-decoration:none;
+  color:inherit;
+}
+.logo-svg{
+  width:42px;
+  height:42px;
+}
+.brand-text{
+  display:flex;
+  flex-direction:column;
+  line-height:1.2;
+}
+.brand-text strong{
+  font-weight:800;
+  font-size:18px;
+  color:var(--light);
+}
+.brand-text small{
+  font-size:11px;
+  color:var(--muted);
+  letter-spacing:0.5px;
+}
+nav{
+  display:flex;
+  gap:28px;
+}
+nav a{
+  color:var(--muted);
+  font-weight:500;
+  font-size:15px;
+  text-decoration:none;
+  position:relative;
+  transition:all 0.3s ease;
+}
+nav a::after{
+  content:'';
+  position:absolute;
+  bottom:-6px;
+  left:0;
+  width:0;
+  height:2px;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  transition:width 0.3s ease;
+}
+nav a:hover{
+  color:var(--light);
+}
+nav a:hover::after{
+  width:100%;
+}
+
+/* HERO */
+.features-hero{
+  padding:140px 48px 90px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.features-hero::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg, rgba(124,92,255,0.08), rgba(0,212,255,0.05));
+  z-index:0;
+}
+.features-hero > *{
+  position:relative;
+  z-index:1;
+}
+.features-hero h1{
+  font-size:clamp(36px,6vw,52px);
+  font-weight:800;
+  margin-bottom:1rem;
+  background:linear-gradient(90deg,var(--accent2),var(--accent1));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.features-hero p{
+  font-size:18px;
+  color:var(--muted);
+  max-width:720px;
+  margin:0 auto 2rem;
+  line-height:1.7;
+}
+
+/* FEATURES GRID */
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(320px, 1fr));
+  gap:2rem;
+  padding:0 48px 90px;
+}
+.feature-card{
+  background:linear-gradient(145deg, rgba(255,255,255,0.04), rgba(10,10,15,0.8));
+  border-radius:18px;
+  padding:2.5rem;
+  border:1px solid rgba(124,92,255,0.12);
+  box-shadow:0 8px 32px rgba(0,0,0,0.3);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  overflow:hidden;
+  position:relative;
+  transition:all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  opacity:0;
+  transform:translateY(20px);
+  animation:fadeInUp 0.7s ease forwards;
+}
+.feature-card:nth-child(1){animation-delay:0.1s}
+.feature-card:nth-child(2){animation-delay:0.2s}
+.feature-card:nth-child(3){animation-delay:0.3s}
+.feature-card:nth-child(4){animation-delay:0.4s}
+.feature-card:nth-child(5){animation-delay:0.5s}
+@keyframes fadeInUp{to{opacity:1;transform:translateY(0)}}
+
+.feature-card::before{
+  content:'';
+  position:absolute;
+  top:-50%; left:-50%;
+  width:200%; height:200%;
+  background:radial-gradient(circle, rgba(124,92,255,0.15) 0%, rgba(0,212,255,0.08) 50%, transparent 70%);
+  transform:rotate(30deg);
+  transition:all 0.6s ease;
+  z-index:-1;
+  opacity:0;
+}
+.feature-card:hover::before{
+  opacity:1;
+  transform:rotate(0deg);
+  top:-20%; left:-20%;
+}
+.feature-card::after{
+  content:'';
+  position:absolute;
+  bottom:0; left:0;
+  width:100%; height:4px;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:transform 0.5s ease;
+}
+.feature-card:hover::after{transform:scaleX(1)}
+
+.feature-card:hover{
+  transform:translateY(-12px) scale(1.02);
+  box-shadow:0 20px 50px rgba(124,92,255,0.25), 0 0 40px rgba(0,212,255,0.15);
+  border-color:rgba(124,92,255,0.5);
+}
+
+.feature-icon{
+  font-size:2.8rem;
+  margin-bottom:1.5rem;
+  display:inline-block;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  transition:all 0.5s ease;
+}
+.feature-card:hover .feature-icon{
+  transform:scale(1.15) rotate(6deg);
+}
+
+.feature-card h3{
+  font-size:1.5rem;
+  font-weight:800;
+  margin-bottom:1rem;
+  color:var(--light);
+}
+.feature-card p{
+  color:rgba(255,255,255,0.8);
+  line-height:1.7;
+  font-size:15px;
+}
+
+/* RESPONSIVE */
+@media(max-width:980px){
+  header.topbar{padding:12px 24px}
+  .features-hero{padding:120px 24px 60px}
+  .features-grid{padding:0 24px 60px; gap:1.5rem}
+}
+</style>
+</head>
+
+<body>
+<header class="topbar">
+  <a href="index.html" class="brand">
+    <svg class="logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#7c5cff"/>
+          <stop offset="100%" stop-color="#00d4ff"/>
+        </linearGradient>
+      </defs>
+      <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(124,92,255,0.2)" stroke-width="1"/>
+      <circle cx="50" cy="50" r="40" fill="none" stroke="rgba(0,212,255,0.15)" stroke-width="0.5"/>
+      <path d="M30,65 Q40,55 45,45 Q50,35 60,40 Q65,45 62,55 Q58,65 50,68 Q42,70 35,65" 
+            fill="url(#grad1)" stroke="#7c5cff" stroke-width="2"/>
+      <path d="M38,58 Q45,50 48,45 Q50,40 55,43" 
+            fill="none" stroke="#00d4ff" stroke-width="3" opacity="0.8"/>
+      <circle cx="25" cy="25" r="1.5" fill="#00d4ff" opacity="0.8"/>
+      <circle cx="75" cy="30" r="1.5" fill="#7c5cff" opacity="0.8"/>
+      <circle cx="20" cy="70" r="1.5" fill="#00d4ff" opacity="0.7"/>
+      <circle cx="80" cy="65" r="1.5" fill="#7c5cff" opacity="0.7"/>
+    </svg>
+    <div class="brand-text">
+      <strong>SkillPulse</strong>
+      <small>MANUFACTURING</small>
+    </div>
+  </a>
+  <nav>
+    <a href="attract.html">Home</a>
+    <a href="#">Dashboard</a>
+    <a href="Features.html">Features</a>
+    <a href="about.html">About</a>
+  </nav>
+</header> 
+<section class="features-hero">
+  <h1>Powerful Features for Modern Manufacturing</h1>
+  <p>AI-powered insights, real-time tracking, 3D skill visualization, and automated workforce optimization - all in one platform.</p>
+</section>
+<section class="features-grid">
+
+  <div class="feature-card"> 
+    <div class="feature-icon">3D Visualization</div>
+    <h3>3D Skill UI</h3>
+    <p>Explore your workforce in an interactive 3D space. Visualize skill clusters, gaps, and growth paths in real time.</p>
+  </div>
+
+  <div class="feature-card">
+    <div class="feature-icon">AI</div>
+    <h3>Smart AI Insights</h3>
+    <p>Get proactive recommendations: Shift Raj to Line 2 for 18% efficiency gain or Schedule CNC training for 3 operators.</p>
+  </div>
+
+  <div class="feature-card">
+    <div class="feature-icon">Analytics</div>
+    <h3>Real Time Analytics</h3>
+    <p>Live dashboards with OEE, cycle time, downtime alerts, and predictive maintenance signals updated every 60 seconds.</p>
+  </div>
+  <div class="feature-card">
+    <div class="feature-icon">Training</div>
+    <h3>Auto-Training Engine</h3>
+    <p>AI detects skill gaps and auto-assigns micro-courses, tracks completion, and measures ROI on training spend.</p>
+  </div> 
+  <div class="feature-card">
+    <div class="feature-icon">Integration</div>
+    <h3>Seamless Integrations</h3>
+    <p>Connects with ERP, MES, HRIS, and IoT sensors. Pull machine data, attendance, and quality metrics into one view.</p>
+  </div>
+</section>
+</body>
+</html>
